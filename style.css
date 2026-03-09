@@ -1,0 +1,869 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  --pm-primary: #1d4ed8;
+  --pm-primary-2: #0f2a5f;
+  --pm-bg: #f7f8fb;
+  --pm-card: #ffffff;
+  --pm-border: rgba(148, 163, 184, 0.4);
+  --pm-text: #0b1220;
+  --pm-muted: #5b6b82;
+  --pm-accent: #0ea5e9;
+  --pm-accent-warm: #f97316;
+  --pm-accent-soft: #fde68a;
+}
+
+.stApp {
+  background: radial-gradient(
+      1100px 520px at 8% 2%,
+      rgba(14, 165, 233, 0.25),
+      transparent 48%
+    ),
+    radial-gradient(
+      900px 620px at 90% 0%,
+      rgba(249, 115, 22, 0.28),
+      transparent 45%
+    ),
+    linear-gradient(160deg, #f0f4f8 0%, #e8eef6 45%, #e6ecff 100%);
+  color: var(--pm-text);
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+.pm-title {
+  font-family: "Fraunces", "Space Grotesk", serif;
+  letter-spacing: -0.015em;
+}
+
+/* Sidebar Styling */
+section[data-testid="stSidebar"] {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(236, 245, 255, 0.7) 55%,
+    rgba(255, 244, 235, 0.55) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-right: 1px solid var(--pm-border);
+  box-shadow: 6px 0 24px rgba(15, 23, 42, 0.08);
+}
+
+section[data-testid="stSidebar"] .block-container {
+  padding-top: 2rem;
+}
+
+div[data-testid="stSidebar"] div[data-testid="stButton"],
+div[data-testid="stSidebar"] .stButton {
+  margin-bottom: 0.25rem;
+}
+
+/* platform pill columns – handled via aria-label rules below */
+
+div[data-testid="stSidebar"] button[data-testid^="baseButton-"],
+div[data-testid="stSidebar"] div[data-testid="stButton"] > button,
+div[data-testid="stSidebar"] .stButton > button {
+  background: rgba(255, 255, 255, 0.32) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06) !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  padding: 0.7rem 0.5rem 0.7rem 1.5rem !important;
+  text-align: left !important;
+  width: 100% !important;
+  position: relative !important;
+  transition: background-color 220ms ease, border-color 220ms ease,
+    box-shadow 220ms ease, transform 220ms ease, color 220ms ease !important;
+  border-radius: 12px !important;
+  outline: none !important;
+  font-size: 1.05rem !important;
+  line-height: 1.2 !important;
+}
+
+div[data-testid="stSidebar"] button[data-testid^="baseButton-"]:hover,
+div[data-testid="stSidebar"] div[data-testid="stButton"] > button:hover,
+div[data-testid="stSidebar"] .stButton > button:hover {
+  color: var(--pm-primary) !important;
+  transform: translateX(4px) !important;
+  background: rgba(255, 255, 255, 0.46) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+div[data-testid="stSidebar"] button[data-testid^="baseButton-"]::before,
+div[data-testid="stSidebar"] div[data-testid="stButton"] > button::before,
+div[data-testid="stSidebar"] .stButton > button::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%) scale(0.6);
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(29, 78, 216, 0.25);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(29, 78, 216, 0);
+}
+
+div[data-testid="stSidebar"] button[data-testid^="baseButton-"]::after,
+div[data-testid="stSidebar"] div[data-testid="stButton"] > button::after,
+div[data-testid="stSidebar"] .stButton > button::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 1.5rem;
+  width: 0%;
+  height: 2px;
+  background-color: var(--pm-primary);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+div[data-testid="stSidebar"] button[data-testid^="baseButton-"]:hover::after,
+div[data-testid="stSidebar"] div[data-testid="stButton"] > button:hover::after,
+div[data-testid="stSidebar"] .stButton > button:hover::after {
+  width: 1.25rem;
+  opacity: 0.5;
+}
+
+div[data-testid="stSidebar"] button[data-testid="baseButton-primary"] {
+  color: var(--pm-primary) !important;
+  font-weight: 700 !important;
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.26) 0%,
+    rgba(29, 78, 216, 0.22) 100%
+  ) !important;
+  border-color: rgba(56, 189, 248, 0.5) !important;
+  box-shadow: 0 16px 34px rgba(29, 78, 216, 0.12),
+    inset 0 0 0 1px rgba(56, 189, 248, 0.16) !important;
+  transform: none !important;
+}
+
+div[data-testid="stSidebar"] button[data-testid="baseButton-primary"]::before {
+  background: var(--pm-primary) !important;
+  transform: translateY(-50%) scale(1);
+  box-shadow: 0 0 18px rgba(29, 78, 216, 0.35);
+}
+
+div[data-testid="stSidebar"] button[data-testid="baseButton-primary"]::after {
+  width: 60px;
+  opacity: 1;
+}
+
+div[data-testid="stSidebar"] h1 {
+  background: linear-gradient(120deg, #0f2a5f, #1d4ed8 55%, #0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: -0.03em;
+  padding-bottom: 0.5rem;
+}
+
+div[data-testid="stSidebar"] hr {
+  margin: 1rem 0 1.5rem 0;
+  border-color: var(--pm-border);
+  opacity: 0.6;
+}
+
+.pm-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f6ff 55%, #ffffff 100%);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+  margin-bottom: 1.1rem;
+}
+
+.pm-sidebar-logo-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pm-sidebar-logo-icon img {
+  width: 44px;
+  height: auto;
+  display: block;
+}
+
+.pm-sidebar-app-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+.pm-platform-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0.9rem 0.1rem;
+}
+
+.pm-platform-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+}
+
+.pm-platform-icon--linkedin {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%230A66C2' d='M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1 4.98 2.12 4.98 3.5ZM.5 23.5h4V7.98h-4V23.5ZM8.5 7.98h3.83v2.12h.05c.53-1.01 1.83-2.12 3.77-2.12 4.03 0 4.77 2.65 4.77 6.09v9.43h-4v-8.36c0-2 0-4.58-2.79-4.58s-3.22 2.18-3.22 4.44v8.5h-4V7.98Z'/%3E%3C/svg%3E");
+}
+
+.pm-platform-icon--facebook {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231877F2' d='M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.09 4.39 23.08 10.12 24v-8.44H7.08V12h3.04V9.36c0-3.02 1.79-4.69 4.54-4.69 1.31 0 2.68.24 2.68.24v2.96H15.8c-1.5 0-1.97.94-1.97 1.9V12h3.35l-.54 3.56h-2.81V24C19.61 23.08 24 18.09 24 12.07Z'/%3E%3C/svg%3E");
+}
+
+.pm-platform-icon--instagram {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23E1306C' d='M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Zm-4.5 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2ZM17.6 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z'/%3E%3C/svg%3E");
+}
+
+.pm-platform-heading-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+}
+
+.pm-sidebar-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0),
+    rgba(148, 163, 184, 0.7),
+    rgba(148, 163, 184, 0)
+  );
+  margin: 0.9rem 0 1.1rem 0;
+}
+
+/* Main Content Area */
+.main .block-container {
+  padding-top: 2rem !important;
+  max-width: 1200px;
+}
+
+div[data-testid="stLogoSpacer"] {
+  display: none !important;
+}
+
+div[data-testid="stSidebarCollapseButton"] button {
+  padding: 0.1rem 0.25rem !important;
+}
+
+div[data-testid="stSidebarContent"] {
+  padding-top: 0.25rem !important;
+}
+
+section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+div[data-testid="stMarkdownContainer"] > hr {
+  margin: 0 !important;
+}
+
+div[data-testid="stTabs"] button[role="tab"] {
+  padding: 10px 14px;
+  border-radius: 12px;
+  position: relative;
+}
+
+div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+  background: transparent;
+  border: none;
+  color: var(--pm-primary);
+  font-weight: 700;
+}
+
+div[data-testid="stTabs"] button[role="tab"]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background-color 220ms ease, transform 220ms ease;
+  transform: scaleX(0.4);
+}
+
+div[data-testid="stTabs"] button[role="tab"][aria-selected="true"]::after {
+  background: linear-gradient(90deg, #0a66c2, #0ea5e9);
+  transform: scaleX(1);
+}
+
+/* platform column overrides handled by aria-label rules below */
+
+div[data-testid="stTabs"] [data-baseweb="tab-list"] {
+  justify-content: flex-end;
+}
+
+label[data-testid="stWidgetLabel"] {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0 2px 0;
+  margin-bottom: 6px;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
+label[data-testid="stWidgetLabel"] p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--pm-primary-2);
+  letter-spacing: 0.02em;
+}
+
+div[data-testid="stSelectbox"] div[role="combobox"],
+div[data-testid="stTextArea"] textarea {
+  background: linear-gradient(
+    135deg,
+    rgba(29, 78, 216, 0.14),
+    rgba(255, 255, 255, 0.98)
+  ) !important;
+  border: 1px solid rgba(29, 78, 216, 0.32) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.1);
+}
+
+div[data-testid="stSelectbox"] div[role="combobox"]:focus-within,
+div[data-testid="stTextArea"] textarea:focus {
+  border-color: rgba(29, 78, 216, 0.45) !important;
+  box-shadow: 0 12px 26px rgba(29, 78, 216, 0.14);
+}
+
+div[data-testid="stSelectbox"] svg {
+  fill: rgba(29, 78, 216, 0.6) !important;
+}
+
+div[data-testid="stSelectbox"] ul {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(29, 78, 216, 0.06)
+  ) !important;
+  border: 1px solid rgba(29, 78, 216, 0.22) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+div[data-testid="stSelectbox"] li[role="option"] {
+  border-radius: 10px !important;
+}
+
+video[data-testid="stVideo"] {
+  max-width: 520px !important;
+  width: 100% !important;
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+}
+
+div[data-testid="stExpander"] {
+  border: 1px solid var(--pm-border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+div[data-testid="stExpander"] details {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+section[data-testid="stFileUploaderDropzone"] {
+  padding: 0.35rem 0.6rem;
+  min-height: 0;
+}
+
+section[data-testid="stFileUploaderDropzone"]
+  div[data-testid="stFileUploaderDropzoneInstructions"] {
+  display: none;
+}
+
+/* Reset text for all uploader buttons first */
+section[data-testid="stFileUploaderDropzone"] button {
+  font-size: 0 !important;
+}
+
+/* Hide redundant labels */
+div[data-testid="stFileUploader"]:has(section[aria-label="➕ Image"]) label,
+div[data-testid="stFileUploader"]:has(section[aria-label="➕ Video"]) label {
+  display: none !important;
+}
+
+/*
+ * PRODUCTION-READY UPLOADER BUTTON STYLING
+ * Makes the uploader dropzone invisible and styles the inner button to look exactly like standard buttons.
+ */
+
+/* Target the specific uploaders by aria-label to avoid affecting others */
+div[data-testid="stFileUploader"]:has(section[aria-label="➕ Image"]),
+div[data-testid="stFileUploader"]:has(section[aria-label="➕ Video"]) {
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+/* 1. Strip the dropzone container for our specific uploaders */
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Image"],
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Video"] {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+/* 2. Style the inner button to fill the space and look like a sibling button */
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Image"] button,
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Video"] button {
+  width: 100% !important;
+  min-height: 2.5rem !important;
+  height: 2.5rem !important;
+  margin: 0 !important;
+  padding: 0.25rem 0.75rem !important;
+  border: 1px solid rgba(49, 51, 63, 0.2) !important;
+  border-radius: 0.5rem !important;
+  background-color: #ffffff !important;
+  color: rgb(49, 51, 63) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: none !important;
+  line-height: 1.6 !important;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif !important;
+}
+
+/* 3. Hover state for the button */
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Image"]
+  button:hover,
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Video"]
+  button:hover {
+  border-color: rgb(255, 75, 75) !important;
+  color: rgb(255, 75, 75) !important;
+  background-color: #ffffff !important;
+}
+
+/* 4. Active/Focus state */
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Image"]
+  button:active,
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Video"]
+  button:active {
+  background-color: rgb(255, 75, 75) !important;
+  color: white !important;
+  border-color: rgb(255, 75, 75) !important;
+}
+
+/* 5. Inject the correct text and hide original */
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Image"]
+  button::after {
+  content: "➕ Image";
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+section[data-testid="stFileUploaderDropzone"][aria-label="➕ Video"]
+  button::after {
+  content: "➕ Video";
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+button[kind="primary"],
+button {
+  border-radius: 12px !important;
+}
+
+.pm-hero {
+  border: 1px solid var(--pm-border);
+  background: linear-gradient(
+    145deg,
+    rgba(14, 165, 233, 0.16) 0%,
+    rgba(255, 255, 255, 0.95) 40%,
+    rgba(249, 115, 22, 0.08) 100%
+  );
+  box-shadow: 0 18px 42px rgba(2, 6, 23, 0.12);
+  border-radius: 20px;
+  padding: 24px 24px;
+  margin-top: -3rem;
+  margin-bottom: 14px;
+}
+
+.pm-title {
+  font-size: 28px;
+  font-weight: 760;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px 0;
+}
+
+.pm-subtitle {
+  color: var(--pm-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Dashboard Metrics Cards */
+.metric-card {
+  background: linear-gradient(160deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--pm-border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
+}
+
+.metric-label {
+  color: var(--pm-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  color: var(--pm-text);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.metric-subtext {
+  font-size: 0.8rem;
+  color: var(--pm-muted);
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============================================================
+   PLATFORM SELECTOR
+   Real st.button elements are hidden; custom HTML buttons
+   with inline SVG brand icons are rendered above them via
+   st.markdown() in Python. JS .click() works on hidden elements.
+   ============================================================ */
+
+/* Widen the sidebar so the 3 custom chips fit without clipping */
+section[data-testid="stSidebar"] > div {
+  min-width: 300px !important;
+}
+
+/* Equal-width columns, no extra padding */
+section[data-testid="stSidebar"] [data-testid="column"] {
+  min-width: 0 !important;
+  flex: 1 1 0 !important;
+  padding: 0 2px !important;
+}
+
+/* Hide the backing radio widget — display:none is safe here because
+   dispatchEvent on radio inputs works regardless of CSS visibility.
+   This has no conflict with any button rules. */
+section[data-testid="stSidebar"] [data-testid="stRadio"] {
+  display: none !important;
+}
+
+/* Remove extra space below the platform selector component iframe */
+section[data-testid="stSidebar"]
+  iframe[title="pm_platform_selector.pm_platform_selector"],
+section[data-testid="stSidebar"] iframe[title="pm_nav_menu.pm_nav_menu"],
+section[data-testid="stSidebar"] [data-testid="stCustomComponentV1"] iframe {
+  display: block !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+section[data-testid="stSidebar"] [data-testid="stCustomComponentV1"] {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  width: 100% !important;
+}
+
+/* ============================================================
+   NAV MENU BUTTONS  (Dashboard / Create Post / CEO Approval / Settings)
+   Added [data-testid^="baseButton-"] to reach specificity 0,3,1 and
+   beat the generic rule at 0,2,2. This makes padding + ::before win.
+   ============================================================ */
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid^="baseButton-"],
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid^="baseButton-"],
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid^="baseButton-"],
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid^="baseButton-"] {
+  padding: 0.72rem 0.75rem 0.72rem 3.3rem !important;
+  font-size: 0.97rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  color: #1e293b !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  border: 1px solid rgba(148, 163, 184, 0.28) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05) !important;
+  text-align: left !important;
+  width: 100% !important;
+  position: relative !important;
+  transition: all 0.18s ease !important;
+}
+
+/* Left-align the text node inside the button */
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid^="baseButton-"]
+  p,
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid^="baseButton-"]
+  p,
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid^="baseButton-"]
+  p,
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid^="baseButton-"]
+  p {
+  text-align: left !important;
+  width: 100% !important;
+}
+
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid^="baseButton-"]::after,
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid^="baseButton-"]::after,
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid^="baseButton-"]::after,
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid^="baseButton-"]::after {
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid^="baseButton-"]::before,
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid^="baseButton-"]::before,
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid^="baseButton-"]::before,
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid^="baseButton-"]::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0.72rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 16px 16px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+  transition: box-shadow 0.18s ease !important;
+  display: block !important;
+}
+
+/* Dashboard – blue grid */
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid^="baseButton-"]::before {
+  background-color: #1d4ed8 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='3' width='8' height='8' rx='1.5' fill='%23fff'/%3E%3Crect x='13' y='3' width='8' height='8' rx='1.5' fill='%23fff' opacity='0.75'/%3E%3Crect x='13' y='13' width='8' height='8' rx='1.5' fill='%23fff'/%3E%3Crect x='3' y='13' width='8' height='8' rx='1.5' fill='%23fff' opacity='0.75'/%3E%3C/svg%3E") !important;
+}
+
+/* Create Post – sky pencil */
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid^="baseButton-"]::before {
+  background-color: #0ea5e9 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25ZM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z'/%3E%3C/svg%3E") !important;
+}
+
+/* CEO Approval – violet shield-check */
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid^="baseButton-"]::before {
+  background-color: #f59e0b !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12 2 4 5v6c0 4.97 3.44 9.63 8 10.93C17.56 20.63 21 15.97 21 11V5l-9-3Zm-1.5 13.06-3.5-3.5 1.41-1.41 2.09 2.08 4.59-4.58 1.41 1.41-6 6Z'/%3E%3C/svg%3E") !important;
+}
+
+/* Settings – green gear */
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid^="baseButton-"]::before {
+  background-color: #16a34a !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.63-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.48.48 0 0 0-.59-.22l-2.39.96a6.93 6.93 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.44.17-.47.41l-.36 2.54a7.27 7.27 0 0 0-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.47.47 0 0 0 .12.61l2.03 1.58c-.05.32-.08.64-.08.94s.03.63.07.94L2.86 14.5a.47.47 0 0 0-.12.6l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.06.27.29.41.48.41h3.84c.27 0 .48-.2.48-.41l.36-2.54a7.1 7.1 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.6l-2.01-1.56ZM12 15.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2Z'/%3E%3C/svg%3E") !important;
+}
+
+/* Hover */
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid^="baseButton-"]:hover,
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid^="baseButton-"]:hover,
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid^="baseButton-"]:hover,
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid^="baseButton-"]:hover {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08) !important;
+  transform: translateX(3px) !important;
+  color: #0f172a !important;
+}
+
+/* ── Active / selected state ── */
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid="baseButton-primary"] {
+  background: linear-gradient(
+    135deg,
+    rgba(29, 78, 216, 0.13) 0%,
+    rgba(59, 130, 246, 0.09) 100%
+  ) !important;
+  border-color: rgba(29, 78, 216, 0.35) !important;
+  color: #1d4ed8 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.12) !important;
+  transform: none !important;
+}
+[data-testid="stSidebar"]
+  button[aria-label="Dashboard"][data-testid="baseButton-primary"]::before {
+  background-color: #1d4ed8 !important;
+  box-shadow: 0 3px 10px rgba(29, 78, 216, 0.45) !important;
+}
+
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid="baseButton-primary"] {
+  background: linear-gradient(
+    135deg,
+    rgba(14, 165, 233, 0.13) 0%,
+    rgba(56, 189, 248, 0.09) 100%
+  ) !important;
+  border-color: rgba(14, 165, 233, 0.35) !important;
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.12) !important;
+  transform: none !important;
+}
+[data-testid="stSidebar"]
+  button[aria-label="Create Post"][data-testid="baseButton-primary"]::before {
+  background-color: #0ea5e9 !important;
+  box-shadow: 0 3px 10px rgba(14, 165, 233, 0.45) !important;
+}
+
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid="baseButton-primary"] {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.18) 0%,
+    rgba(253, 186, 116, 0.12) 100%
+  ) !important;
+  border-color: rgba(245, 158, 11, 0.45) !important;
+  color: #b45309 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.18) !important;
+  transform: none !important;
+}
+[data-testid="stSidebar"]
+  button[aria-label="CEO Approval"][data-testid="baseButton-primary"]::before {
+  background-color: #f59e0b !important;
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.45) !important;
+}
+
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid="baseButton-primary"] {
+  background: linear-gradient(
+    135deg,
+    rgba(22, 163, 74, 0.13) 0%,
+    rgba(74, 222, 128, 0.09) 100%
+  ) !important;
+  border-color: rgba(22, 163, 74, 0.35) !important;
+  color: #15803d !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.12) !important;
+  transform: none !important;
+}
+[data-testid="stSidebar"]
+  button[aria-label="Settings"][data-testid="baseButton-primary"]::before {
+  background-color: #16a34a !important;
+  box-shadow: 0 3px 10px rgba(22, 163, 74, 0.45) !important;
+}
+
+/* Platform-specific backgrounds */
+.stApp[data-platform="LinkedIn"] {
+  background: radial-gradient(
+      1100px 520px at 8% 2%,
+      rgba(8, 76, 147, 0.65),
+      transparent 48%
+    ),
+    radial-gradient(
+      900px 620px at 90% 0%,
+      rgba(249, 115, 22, 0.15),
+      transparent 45%
+    ),
+    linear-gradient(160deg, #d4dae9 0%, #c8cfe0 45%, #c2d0eb 100%);
+}
+
+.stApp[data-platform="Facebook"] {
+  background: radial-gradient(
+      1100px 520px at 8% 2%,
+      rgba(24, 119, 242, 0.28),
+      transparent 48%
+    ),
+    radial-gradient(
+      900px 620px at 90% 0%,
+      rgba(249, 115, 22, 0.18),
+      transparent 45%
+    ),
+    linear-gradient(160deg, #eef2f9 0%, #e8eef6 45%, #e6ecff 100%);
+}
+
+.stApp[data-platform="Instagram"] {
+  background: radial-gradient(
+      1100px 520px at 8% 2%,
+      rgba(131, 58, 180, 0.25),
+      transparent 48%
+    ),
+    radial-gradient(
+      900px 620px at 90% 0%,
+      rgba(249, 115, 22, 0.3),
+      transparent 45%
+    ),
+    linear-gradient(160deg, #f5eef8 0%, #f3e8f2 45%, #f0e6ff 100%);
+}

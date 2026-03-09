@@ -1,0 +1,10 @@
+streamlit
+google-genai
+python-dotenv
+requests
+Pillow
+schedule
+imageio
+imageio-ffmpeg
+numpy
+beautifulsoup4

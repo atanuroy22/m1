@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.env
+.linkedin_credentials.json
+.facebook_credentials.json
+.instagram_credentials.json
+.approvals.json
+.approvals_*.json
+.email_config.json
+published_log.json
+published_log_*.json
+facebook
+linkedin
+instagram
+images

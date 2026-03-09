@@ -1,0 +1,72 @@
+
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:transparent;overflow:hidden}
+  .row{display:flex;gap:6px;width:100%;padding:2px 1px}
+  button{
+    flex:1;padding:7px 3px;border-radius:10px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    font-size:0.71rem;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+    transition:background 0.18s,box-shadow 0.18s;white-space:nowrap;
+    border:1.5px solid #d0dff0;background:#fff;color:#0a66c2;
+        position:relative;
+  }
+  button.active{color:#fff;border-width:2px}
+  .icon{display:inline-flex;align-items:center;justify-content:center;
+        width:20px;height:20px;flex-shrink:0;border-radius:4px}
+</style>
+</head><body>
+<div class="row" id="row"></div>
+<script>
+var PLATS = [
+    { name:"LinkedIn",  grad:"135deg,#084c93,#0a66c2",  ibg:"#084c93",
+    svg:'<path fill="#fff" d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1 4.98 2.12 4.98 3.5ZM.5 23.5h4V7.98h-4V23.5ZM8.5 7.98h3.83v2.12h.05c.53-1.01 1.83-2.12 3.77-2.12 4.03 0 4.77 2.65 4.77 6.09v9.43h-4v-8.36c0-2 0-4.58-2.79-4.58s-3.22 2.18-3.22 4.44v8.5h-4V7.98Z"/>',
+        shadow:"8,76,147" },
+  { name:"Facebook", grad:"135deg,#1877f2,#1565c0",  ibg:"#1877f2",
+    svg:'<path fill="#fff" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.09 4.39 23.08 10.12 24v-8.44H7.08V12h3.04V9.36c0-3.02 1.79-4.69 4.54-4.69 1.31 0 2.68.24 2.68.24v2.96H15.8c-1.5 0-1.97.94-1.97 1.9V12h3.35l-.54 3.56h-2.81V24C19.61 23.08 24 18.09 24 12.07Z"/>',
+    shadow:"24,119,242" },
+  { name:"Instagram",grad:"135deg,#833ab4,#c13584,#f77737",ibg:"linear-gradient(135deg,#833ab4,#c13584,#f77737)",
+    svg:'<path fill="#fff" d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Zm-4.5 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2ZM17.6 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z"/>',
+    shadow:"193,53,132" }
+];
+
+var current = "LinkedIn";
+
+function msg(type, extra) {
+  var m = Object.assign({isStreamlitMessage:true,apiVersion:1,type:type}, extra||{});
+  window.parent.postMessage(m, "*");
+}
+
+function render(selected) {
+  current = selected || "LinkedIn";
+  var row = document.getElementById("row");
+  row.innerHTML = "";
+  PLATS.forEach(function(p) {
+    var active = p.name === current;
+    var btn = document.createElement("button");
+        if (active) {
+            btn.className = "active";
+            btn.style.cssText = "background:linear-gradient("+p.grad+");box-shadow:0 4px 14px rgba("+p.shadow+",0.38),inset 0 -3px 0 rgba("+p.shadow+",0.9);border-color:"+p.ibg.split(",")[0].replace(/[^#\w]/g,"")+";";
+        } else {
+      btn.style.cssText = "color:"+p.ibg.split(",")[0].replace(/linear-gradient\(135deg,/,"")+";";
+    }
+    var iconBg = active ? "rgba(255,255,255,0.22)" : p.ibg;
+    btn.innerHTML = '<span class="icon" style="background:'+iconBg+'">'
+      + '<svg width="13" height="13" viewBox="0 0 24 24">'+p.svg+'</svg></span> '+p.name;
+    btn.title = p.name;
+    btn.onclick = (function(name){ return function(){ msg("streamlit:setComponentValue",{value:name,dataType:"json"}); }; })(p.name);
+    row.appendChild(btn);
+  });
+  msg("streamlit:setFrameHeight", {height: document.body.scrollHeight});
+}
+
+window.addEventListener("message", function(e) {
+  if (e.data.type === "streamlit:render") {
+    render(e.data.args && e.data.args.selected);
+  }
+});
+
+msg("streamlit:componentReady");
+</script>
+</body></html>
