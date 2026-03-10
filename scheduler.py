@@ -9,6 +9,12 @@ import requests
 import mimetypes
 from datetime import datetime
 import time
+import threading
+
+# Module-level guards — shared across all Streamlit sessions in the same process
+_scheduler_started = False
+_scheduler_lock = threading.Lock()
+_publish_lock = threading.Lock()
 
 def _load_env_file():
     # Load .env file
@@ -58,9 +64,14 @@ def start_scheduler_background(interval_seconds: int | None = None):
     """Start the auto-publish loop in a background thread.
     Use when importing from a running app (e.g., Streamlit) so it checks
     `published_log.json` periodically without Windows Task Scheduler.
+    Only ONE thread is ever started per process — safe across multiple sessions.
     """
+    global _scheduler_started
+    with _scheduler_lock:
+        if _scheduler_started:
+            return None  # Already running — do not start a second thread
+        _scheduler_started = True
     try:
-        import threading
         interval = interval_seconds or int(os.getenv("SCHEDULER_INTERVAL_SECONDS", "20"))
 
         def _loop():
@@ -85,6 +96,16 @@ def start_scheduler_background(interval_seconds: int | None = None):
         return None
 
 def auto_publish_scheduled_posts():
+    # Prevent concurrent runs from multiple threads publishing the same post
+    if not _publish_lock.acquire(blocking=False):
+        return 0  # Another publish run is already in progress
+    try:
+        return _do_auto_publish()
+    finally:
+        _publish_lock.release()
+
+
+def _do_auto_publish():
     base_dir = os.path.dirname(__file__)
 
     def _load_json(path_value):

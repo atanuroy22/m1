@@ -9,6 +9,7 @@ __pycache__/
 .email_config.json
 published_log.json
 published_log_*.json
+config.toml
 facebook
 linkedin
 instagram
